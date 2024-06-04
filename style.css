@@ -2,40 +2,69 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: sans-serif;
+    color: #ffffff;
 }
 
 body{
-    background-color: rgba(0, 0, 0, 0.7);
-    color: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    flex-direction: column;
-}
-.stopwatch{
-    background-color: rgba(0, 0, 0 , 0.9);
-    padding: 20px 24px;
-    border-radius: 10px;
-}
-.timerDisplay{
-    font-size: 50px;
-    font-weight: 600;
+    background-color: #212121;
 }
 
-.buttons{
-    margin-top: 20px;
+.container{
+    position: relative;
 }
 
-.btn{
-    font-size: 20px;
-    background: none;
-    border: none;
-    color: #fff;
+.clock{
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background-color: rgba(225, 225, 225, 0.1);
+    border: 2px solid rgba(225, 225, 225, 0.25);
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.clock span{
+    position: absolute;
+    transform: rotate(calc(30deg * var(--i)));
+    inset: 12px;
+    text-align: center;
+}
+
+.clock span b{
+    transform: rotate(calc(-30deg * var(--i)));
+    display: inline-block;
+    font-size:20px;
+}
+
+.clock::before{
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #fff;
+    z-index: 2;
+}
+.hand{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.hand i{
+    position: absolute;
     background-color: var(--clr);
-    padding: 12px 24px;
-    margin-inline: 13px;
+    width: 4px;
+    height: var(--h);
     border-radius: 8px;
-    cursor: pointer;
 }
+
+

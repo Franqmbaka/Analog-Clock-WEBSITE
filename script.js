@@ -1,49 +1,21 @@
-let timerDispaly = document.querySelector('.timerDisplay');
-let stopBtn = document.getElementById('stopBtn');
-let startBtn = document.getElementById('startBtn');
-let resetBtn = document.getElementById('resetBtn');
+let hr = document.getElementById('hour');
+let min = document.getElementById('min');
+let sec = document.getElementById('sec');
 
-let msec = 0;
-let secs = 0;
-let mins = 0;
+function displayTime(){
+    let date = new Date();
+    //Getting hour, mins, secs from date
+    let hh = date.getHours();
+    let mm = date.getMinutes();
+    let ss = date.getSeconds();
 
-let timerId  = null;
+    let hRotation = 30*hh + mm/2;
+    let mRotation = 6*mm;
+    let sRotation = 6*ss;
 
-startBtn.addEventListener('click', function(){
-    if(timerId !== null){
-        clearInterval(timerId);
-    }
-    timerId = setInterval(startTimer, 10);
-});
-
-stopBtn.addEventListener('click', function(){
-    clearInterval(timerId);
-});
-
-resetBtn.addEventListener('click', function(){
-    clearInterval(timerId);
-    timerDispaly.innerHTML = '00 : 00 : 00';
-    msec = secs = mins = 0;
-});
-
-function startTimer(){
-    msec++;
-    if(msec == 100){
-        msec = 0;
-        secs ++;
-        if(secs == 60){
-            secs = 0;
-mins++;
-        }
-    }
-
-    let msecString = msec < 10 ? `0${msec}` : msec;
-    let secsString = secs < 10 ? `0${secs}` : secs; 
-    let minsString = mins < 10 ? `0${mins}` : mins; 
-
-
-    timerDispaly.innerHTML = `${minsString} : ${secsString} : ${msecString}`; 
-
+    hr.style.transform = `rotate(${hRotation}deg)`;
+    min.style.transform = `rotate(${mRotation}deg)`;
+    sec.style.transform = `rotate(${sRotation}deg)`;
 }
 
-
+setInterval(displayTime, 1000);
